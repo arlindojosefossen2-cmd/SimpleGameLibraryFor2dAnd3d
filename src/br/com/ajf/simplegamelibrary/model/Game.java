@@ -21,7 +21,7 @@ public final class Game implements IGame
         inputProcessor = new InputProcessor(this);
         gamePanel = new GamePanel(this, width, height);
         gameWindow = new GameWindow(this, title);
-        this.title = title;
+        setTitle(title);
     }
     
     @Override
@@ -66,7 +66,7 @@ public final class Game implements IGame
             this.scene.setStart(true);
         }
         
-        this.scene.update(1f/gameThread.fps);
+        this.scene.update(1f / gameThread.fps);
         
         if (this.scene.isVisible())
         {

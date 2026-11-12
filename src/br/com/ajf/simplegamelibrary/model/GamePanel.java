@@ -56,7 +56,7 @@ public final class GamePanel
     
     private boolean ifNotDraw()
     {
-        return image == null || graphics2D == null ||  canvas == null;
+        return image == null || graphics2D == null || canvas == null;
     }
     
     private void drawToScreen()
@@ -79,11 +79,11 @@ public final class GamePanel
             graphics2D.dispose();
         }
         
-        game.resizeScene(image.getWidth(),image.getHeight(),width, height);
+        game.resizeScene(image.getWidth(), image.getHeight(), width, height);
         this.canvas.setSize(new Dimension(width, height));
         this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         this.graphics2D = image.createGraphics();
-        this.graphics2D.drawImage(image,width, height, null);
+        this.graphics2D.drawImage(image, width, height, null);
     }
     
     public void stop()

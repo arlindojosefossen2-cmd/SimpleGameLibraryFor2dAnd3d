@@ -10,9 +10,10 @@ public final class MainGameTest
     
     }
     
-    static void main(String[] args)
+    static void main()
     {
-        final IGame game = new Game("Test",720,576,60);
+        final IGame game = new Game("Test", 720, 576, 30);
+        game.setIcon("/icon/rob.png");
         game.addScene(new TestScene(game));
         game.start();
     }

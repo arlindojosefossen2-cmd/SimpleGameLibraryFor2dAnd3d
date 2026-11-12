@@ -24,16 +24,16 @@ public class FrameRate
     public void calculate()
     {
         final long current = System.currentTimeMillis();
-        delta += current-lastTime;
+        delta += current - lastTime;
         lastTime = current;
         frameCounter++;
         
-        if(delta <= 1000)
+        if (delta <= 1000)
         {
             return;
         }
         
-        delta-=1000;
+        delta -= 1000;
         frameRate = String.format(String.valueOf(frameCounter));
         frameCounter = 0;
     }

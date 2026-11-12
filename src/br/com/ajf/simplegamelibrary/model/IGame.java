@@ -13,8 +13,6 @@ public interface IGame extends GameInput
     
     void update();
     
-    void pause();
-    
     void resize(int x, int y, int width, int height);
     
     void setTitle(String title);

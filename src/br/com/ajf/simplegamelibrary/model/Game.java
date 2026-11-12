@@ -38,12 +38,6 @@ public final class Game implements IGame
     }
     
     @Override
-    public void pause()
-    {
-    
-    }
-    
-    @Override
     public void resize(int x, int y, int width, int height)
     {
         this.gamePanel.resize(x, y, width, height);

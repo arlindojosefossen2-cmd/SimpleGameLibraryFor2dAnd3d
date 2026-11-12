@@ -12,7 +12,7 @@ public final class MainGameTest
     
     static void main(String[] args)
     {
-        final IGame game = new Game("Test",720,576,30);
+        final IGame game = new Game("Test",720,576,60);
         game.addScene(new TestScene(game));
         game.start();
     }

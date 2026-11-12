@@ -14,7 +14,7 @@ public interface Scene extends GameInput
     
     void setStart(boolean b);
     
-    void update();
+    void update(float delta);
     
     boolean isVisible();
     
@@ -24,5 +24,5 @@ public interface Scene extends GameInput
     
     void stop();
     
-    void resize(int x, int y, int width, int height);
+    void resize(int oldWidth, int oldHeight, int width, int height);
 }

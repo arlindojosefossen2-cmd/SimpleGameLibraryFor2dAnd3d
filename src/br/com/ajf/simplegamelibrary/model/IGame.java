@@ -13,7 +13,7 @@ public interface IGame extends GameInput
     
     void update();
     
-    void resize(int x, int y, int width, int height);
+    void resize(int width, int height);
     
     void setTitle(String title);
     
@@ -25,5 +25,5 @@ public interface IGame extends GameInput
     
     void startGameThread();
     
-    void resizeScene(int x, int y, int width, int height);
+    void resizeScene(int oldWidth, int oldHeight, int width, int height);
 }

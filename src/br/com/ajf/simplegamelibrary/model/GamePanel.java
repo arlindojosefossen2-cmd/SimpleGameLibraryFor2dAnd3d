@@ -20,8 +20,8 @@ public final class GamePanel
     private static void createDefaultCanvasSet(Game game, int width, int height, JPanel canvas)
     {
         canvas.setPreferredSize(new Dimension(width, height));
-        canvas.addComponentListener(new GamePanelComponentResize(game));
         canvas.setBackground(Color.BLACK);
+        canvas.addComponentListener(new GamePanelComponentResize(game));
         canvas.setDoubleBuffered(true);
     }
     
@@ -37,18 +37,11 @@ public final class GamePanel
     private JPanel createCanvas(Game game, int width, int height)
     {
         final JPanel canvas = new JPanel();
-        createImage(width, height);
-        
-        createDefaultCanvasSet(game, width, height, canvas);
-        
-        createInputs(game, canvas);
-        return canvas;
-    }
-    
-    private void createImage(int width, int height)
-    {
         this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         this.graphics2D = image.createGraphics();
+        createDefaultCanvasSet(game, width, height, canvas);
+        createInputs(game, canvas);
+        return canvas;
     }
     
     public void draw()
@@ -63,7 +56,7 @@ public final class GamePanel
     
     private boolean ifNotDraw()
     {
-        return image == null || canvas == null || graphics2D == null;
+        return image == null || graphics2D == null ||  canvas == null;
     }
     
     private void drawToScreen()
@@ -79,16 +72,18 @@ public final class GamePanel
         game.draw(graphics2D);
     }
     
-    public void resize(int x, int y, int width, int height)
+    public void resize(int width, int height)
     {
         if (graphics2D != null)
         {
             graphics2D.dispose();
         }
-        game.resizeScene(x, y, image.getWidth(), image.getHeight());
-        this.canvas.setSize(width, height);
-        createImage(width, height);
-        this.graphics2D.drawImage(image, width, height, null);
+        
+        game.resizeScene(image.getWidth(),image.getHeight(),width, height);
+        this.canvas.setSize(new Dimension(width, height));
+        this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        this.graphics2D = image.createGraphics();
+        this.graphics2D.drawImage(image,width, height, null);
     }
     
     public void stop()

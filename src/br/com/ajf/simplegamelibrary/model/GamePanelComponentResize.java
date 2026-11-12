@@ -6,7 +6,7 @@ public final class GamePanelComponentResize extends ComponentAdapter
 {
     private final IGame game;
     
-    public GamePanelComponentResize(Game game)
+    public GamePanelComponentResize(IGame game)
     {
         this.game = game;
     }
@@ -14,6 +14,6 @@ public final class GamePanelComponentResize extends ComponentAdapter
     @Override
     public void componentResized(ComponentEvent e)
     {
-        this.game.resize(e.getComponent().getX(), e.getComponent().getY(), e.getComponent().getWidth(), e.getComponent().getHeight());
+        this.game.resize(e.getComponent().getWidth(), e.getComponent().getHeight());
     }
 }

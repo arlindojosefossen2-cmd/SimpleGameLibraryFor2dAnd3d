@@ -24,6 +24,7 @@ public final class GameWindow
             this.window.setAutoRequestFocus(true);
             this.window.add(this.game.getCanvas());
             this.window.pack();
+            this.window.addComponentListener(new GamePanelComponentResize(this.game));
             
             this.window.setLocationRelativeTo(null);
             this.window.setVisible(true);

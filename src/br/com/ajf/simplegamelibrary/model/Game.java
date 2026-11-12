@@ -38,9 +38,9 @@ public final class Game implements IGame
     }
     
     @Override
-    public void resize(int x, int y, int width, int height)
+    public void resize(int width, int height)
     {
-        this.gamePanel.resize(x, y, width, height);
+        this.gamePanel.resize(width, height);
     }
     
     @Override
@@ -52,13 +52,13 @@ public final class Game implements IGame
     @Override
     public void update()
     {
+        this.frameRate.calculate();
+        
         if (!this.scene.isActive())
         {
             this.gamePanel.draw();
             return;
         }
-        
-        this.frameRate.calculate();
         
         if (!this.scene.isStarted())
         {
@@ -66,7 +66,7 @@ public final class Game implements IGame
             this.scene.setStart(true);
         }
         
-        this.scene.update();
+        this.scene.update(1f/gameThread.fps);
         
         if (this.scene.isVisible())
         {
@@ -127,9 +127,9 @@ public final class Game implements IGame
     }
     
     @Override
-    public void resizeScene(int x, int y, int width, int height)
+    public void resizeScene(int oldWidth, int oldHeight, int width, int height)
     {
-        this.scene.resize(x, y, width, height);
+        this.scene.resize(oldWidth, oldHeight, width, height);
     }
     
     public void keyTyped(KeyEvent e)

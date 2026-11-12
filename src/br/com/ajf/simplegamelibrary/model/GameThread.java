@@ -6,7 +6,7 @@ import java.util.concurrent.ScheduledExecutorService;
 public final class GameThread implements Runnable
 {
     private final IGame game;
-    private final int fps;
+    final int fps;
     private volatile boolean running;
     private final ScheduledExecutorService es =  Executors.newSingleThreadScheduledExecutor();
     

@@ -1,4 +1,7 @@
-package br.com.ajf.simplegamelibrary.model;
+package br.com.ajf.simplegamelibrary.model.core;
+
+import br.com.ajf.simplegamelibrary.model.inputs.GameInput;
+import br.com.ajf.simplegamelibrary.model.scenes.Scene;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +16,7 @@ public interface IGame extends GameInput
     
     void update();
     
-    void resize(int width, int height);
+    void resize(int x,int y,int width, int height);
     
     void setTitle(String title);
     
@@ -24,6 +27,4 @@ public interface IGame extends GameInput
     JPanel getCanvas();
     
     void startGameThread();
-    
-    void resizeScene(int oldWidth, int oldHeight, int width, int height);
 }

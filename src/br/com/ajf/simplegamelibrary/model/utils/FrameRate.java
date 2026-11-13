@@ -1,4 +1,4 @@
-package br.com.ajf.simplegamelibrary.model;
+package br.com.ajf.simplegamelibrary.model.utils;
 
 public class FrameRate
 {

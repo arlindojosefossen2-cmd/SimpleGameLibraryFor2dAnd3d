@@ -1,11 +1,14 @@
-package br.com.ajf.simplegamelibrary.model;
+package br.com.ajf.simplegamelibrary.model.threads;
+
+import br.com.ajf.simplegamelibrary.model.core.Game;
+import br.com.ajf.simplegamelibrary.model.core.IGame;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 public final class GameThread implements Runnable
 {
-    final int fps;
+    public final int fps;
     private final IGame game;
     private final ScheduledExecutorService es = Executors.newSingleThreadScheduledExecutor();
     private volatile boolean running;
@@ -48,5 +51,10 @@ public final class GameThread implements Runnable
                 delta--;
             }
         }
+    }
+    
+    public int fps()
+    {
+        return fps;
     }
 }

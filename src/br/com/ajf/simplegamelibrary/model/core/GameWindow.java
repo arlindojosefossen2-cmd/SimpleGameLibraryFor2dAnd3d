@@ -1,4 +1,7 @@
-package br.com.ajf.simplegamelibrary.model;
+package br.com.ajf.simplegamelibrary.model.core;
+
+import br.com.ajf.simplegamelibrary.model.utils.GamePanelComponentResize;
+import br.com.ajf.simplegamelibrary.model.utils.GameWindowClosing;
 
 import javax.swing.*;
 import java.awt.*;

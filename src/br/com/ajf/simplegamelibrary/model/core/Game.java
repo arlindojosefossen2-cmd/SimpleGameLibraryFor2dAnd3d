@@ -1,4 +1,9 @@
-package br.com.ajf.simplegamelibrary.model;
+package br.com.ajf.simplegamelibrary.model.core;
+
+import br.com.ajf.simplegamelibrary.model.inputs.InputProcessor;
+import br.com.ajf.simplegamelibrary.model.scenes.Scene;
+import br.com.ajf.simplegamelibrary.model.threads.GameThread;
+import br.com.ajf.simplegamelibrary.model.utils.FrameRate;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,8 +43,9 @@ public final class Game implements IGame
     }
     
     @Override
-    public void resize(int width, int height)
+    public void resize(int x,int y,int width, int height)
     {
+        this.scene.resize(x,y,width,height);
         this.gamePanel.resize(width, height);
     }
     
@@ -66,7 +72,7 @@ public final class Game implements IGame
             this.scene.setStart(true);
         }
         
-        this.scene.update(1f / gameThread.fps);
+        this.scene.update(1f / gameThread.fps());
         
         if (this.scene.isVisible())
         {
@@ -124,12 +130,6 @@ public final class Game implements IGame
     public InputProcessor getInputProcessor()
     {
         return inputProcessor;
-    }
-    
-    @Override
-    public void resizeScene(int oldWidth, int oldHeight, int width, int height)
-    {
-        this.scene.resize(oldWidth, oldHeight, width, height);
     }
     
     public void keyTyped(KeyEvent e)

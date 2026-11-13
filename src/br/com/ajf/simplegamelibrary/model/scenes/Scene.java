@@ -1,4 +1,6 @@
-package br.com.ajf.simplegamelibrary.model;
+package br.com.ajf.simplegamelibrary.model.scenes;
+
+import br.com.ajf.simplegamelibrary.model.inputs.GameInput;
 
 import java.awt.*;
 
@@ -24,5 +26,5 @@ public interface Scene extends GameInput
     
     void stop();
     
-    void resize(int oldWidth, int oldHeight, int width, int height);
+    void resize(int x, int y, int width, int height);
 }

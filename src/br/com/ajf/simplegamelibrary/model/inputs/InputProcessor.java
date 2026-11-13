@@ -1,4 +1,7 @@
-package br.com.ajf.simplegamelibrary.model;
+package br.com.ajf.simplegamelibrary.model.inputs;
+
+import br.com.ajf.simplegamelibrary.model.core.Game;
+import br.com.ajf.simplegamelibrary.model.core.IGame;
 
 import java.awt.event.*;
 

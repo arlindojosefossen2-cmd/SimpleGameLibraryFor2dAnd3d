@@ -6,31 +6,63 @@ import br.com.ajf.simplegamelibrary.model.core.IGame;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+/**
+ * The Class GameThread.
+ * @author Arlindo Jose Fossem
+ * @version 1.2v
+ * @since 1.5v
+ * {@link Runnable}
+ */
 public final class GameThread implements Runnable
 {
+    /** The Constant ONE_INT. */
+    private static final int ONE_INT = 1;
+
+	/** The fps. */
     public final int fps;
-    private final IGame game;
-    private final ScheduledExecutorService es = Executors.newSingleThreadScheduledExecutor();
-    private volatile boolean running;
     
+    /** The game. */
+    private final IGame game;
+    
+    /** The scheduleExecutorService. */
+    private final ScheduledExecutorService scheduleExecutorService = Executors.newSingleThreadScheduledExecutor();
+    
+    /** The running. */
+    private boolean running;
+    
+    /**
+     * Instantiates a new game thread.
+     *
+     * @param game the game
+     * @param fps the fps
+     */
     public GameThread(Game game, int fps)
     {
         this.game = game;
         this.fps = fps;
     }
     
+    /**
+     * Stop.
+     */
     public void stop()
     {
         running = false;
-        es.shutdownNow();
+        scheduleExecutorService.shutdownNow();
     }
     
+    /**
+     * Start.
+     */
     public void start()
     {
         running = true;
-        es.execute(this);
+        scheduleExecutorService.execute(this);
     }
     
+    /**
+     * Run.
+     */
     @Override
     public void run()
     {
@@ -45,7 +77,7 @@ public final class GameThread implements Runnable
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;
             
-            if (delta >= 1)
+            if (delta >= ONE_INT)
             {
                 game.update();
                 delta--;
@@ -53,7 +85,12 @@ public final class GameThread implements Runnable
         }
     }
     
-    public int fps()
+    /**
+     * Fps.
+     *
+     * @return the int
+     */
+    public int getFps()
     {
         return fps;
     }

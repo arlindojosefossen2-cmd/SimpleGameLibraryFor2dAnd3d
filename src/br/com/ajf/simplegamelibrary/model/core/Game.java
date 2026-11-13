@@ -5,21 +5,52 @@ import br.com.ajf.simplegamelibrary.model.scenes.Scene;
 import br.com.ajf.simplegamelibrary.model.threads.GameThread;
 import br.com.ajf.simplegamelibrary.model.utils.FrameRate;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JPanel;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
+/**
+ * The Class Game.
+ * 
+ * @author Arlindo Jose Fossem
+ * @version 1.2v
+ * @since 1.5v
+ * {@link IGame}
+ */
 public final class Game implements IGame
 {
+    
+    /** The game window. */
     private final GameWindow gameWindow;
+    
+    /** The game panel. */
     private final GamePanel gamePanel;
+    
+    /** The game thread. */
     private final GameThread gameThread;
+    
+    /** The input processor. */
     private final InputProcessor inputProcessor;
+    
+    /** The frame rate. */
     private final FrameRate frameRate = new FrameRate();
+    
+    /** The title. */
     private String title;
     
+    /** The scene. */
     private Scene scene;
     
+    /**
+     * Instantiates a new game.
+     *
+     * @param title the title
+     * @param width the width
+     * @param height the height
+     * @param fps the fps
+     */
     public Game(String title, int width, int height, int fps)
     {
         gameThread = new GameThread(this, fps);
@@ -29,6 +60,9 @@ public final class Game implements IGame
         setTitle(title);
     }
     
+    /**
+     * Start.
+     */
     @Override
     public void start()
     {
@@ -36,25 +70,46 @@ public final class Game implements IGame
         this.frameRate.initialize();
     }
     
+    /**
+     * Adds the scene.
+     *
+     * @param newScene the new scene
+     */
     @Override
     public void addScene(Scene newScene)
     {
         this.scene = newScene;
     }
     
+    /**
+     * Resize.
+     *
+     * @param xPos the x pos
+     * @param yPos the y pos
+     * @param width the width
+     * @param height the height
+     */
     @Override
-    public void resize(int x,int y,int width, int height)
+    public void resize(int xPos,int yPos,int width, int height)
     {
-        this.scene.resize(x,y,width,height);
+        this.scene.resize(xPos,yPos,width,height);
         this.gamePanel.resize(width, height);
     }
     
+    /**
+     * Draw.
+     *
+     * @param g2d the g 2 d
+     */
     @Override
     public void draw(Graphics2D g2d)
     {
         this.scene.draw(g2d);
     }
     
+    /**
+     * Update.
+     */
     @Override
     public void update()
     {
@@ -72,7 +127,7 @@ public final class Game implements IGame
             this.scene.setStart(true);
         }
         
-        this.scene.update(1f / gameThread.fps());
+        this.scene.update(1f / gameThread.getFps());
         
         if (this.scene.isVisible())
         {
@@ -90,23 +145,39 @@ public final class Game implements IGame
         this.scene.stop();
     }
     
+    /**
+     * Sets the title.
+     */
     public void setTitle()
     {
         this.gameWindow.setTitle(String.format("%s: %s", this.title, this.frameRate.getFrameRate()));
     }
     
+    /**
+     * Sets the title.
+     *
+     * @param title the new title
+     */
     @Override
     public void setTitle(String title)
     {
         this.title = title;
     }
     
+    /**
+     * Sets the icon.
+     *
+     * @param resourcePath the new icon
+     */
     @Override
     public void setIcon(String resourcePath)
     {
         this.gameWindow.setIcon(resourcePath);
     }
     
+    /**
+     * Stop.
+     */
     @Override
     public void stop()
     {
@@ -115,125 +186,204 @@ public final class Game implements IGame
         gameThread.stop();
     }
     
+    /**
+     * Gets the canvas.
+     *
+     * @return the canvas
+     */
     @Override
     public JPanel getCanvas()
     {
         return this.gamePanel.get();
     }
     
+    /**
+     * Start game thread.
+     */
     @Override
     public void startGameThread()
     {
         this.gameThread.start();
     }
     
+    /**
+     * Gets the input processor.
+     *
+     * @return the input processor
+     */
     public InputProcessor getInputProcessor()
     {
         return inputProcessor;
     }
     
-    public void keyTyped(KeyEvent e)
+    /**
+     * Key typed.
+     *
+     * @param event the event
+     */
+    @Override
+	public void keyTyped(KeyEvent event)
     {
         if (this.scene == null)
         {
             return;
         }
-        this.scene.keyTyped(e);
+        this.scene.keyTyped(event);
     }
     
-    public void keyPressed(KeyEvent e)
+    /**
+     * Key pressed.
+     *
+     * @param event the event
+     */
+    @Override
+	public void keyPressed(KeyEvent event)
     {
         if (this.scene == null)
         {
             return;
         }
-        this.scene.keyPressed(e);
+        this.scene.keyPressed(event);
     }
     
-    public void keyReleased(KeyEvent e)
+    /**
+     * Key released.
+     *
+     * @param event the event
+     */
+    @Override
+	public void keyReleased(KeyEvent event)
     {
         if (this.scene == null)
         {
             return;
         }
         
-        this.scene.keyReleased(e);
+        this.scene.keyReleased(event);
     }
     
-    public void mouseClicked(MouseEvent e)
+    /**
+     * Mouse clicked.
+     *
+     * @param event the event
+     */
+    @Override
+	public void mouseClicked(MouseEvent event)
     {
         if (this.scene == null)
         {
             return;
         }
         
-        this.scene.mouseClicked(e);
+        this.scene.mouseClicked(event);
     }
     
-    public void mousePressed(MouseEvent e)
+    /**
+     * Mouse pressed.
+     *
+     * @param event the event
+     */
+    @Override
+	public void mousePressed(MouseEvent event)
     {
         if (this.scene == null)
         {
             return;
         }
-        this.scene.mousePressed(e);
+        this.scene.mousePressed(event);
     }
     
-    public void mouseReleased(MouseEvent e)
+    /**
+     * Mouse released.
+     *
+     * @param event the event
+     */
+    @Override
+	public void mouseReleased(MouseEvent event)
     {
         if (this.scene == null)
         {
             return;
         }
-        this.scene.mouseReleased(e);
+        this.scene.mouseReleased(event);
     }
     
-    public void mouseEntered(MouseEvent e)
-    {
-        if (this.scene == null)
-        {
-            return;
-        }
-        
-        this.scene.mouseEntered(e);
-    }
-    
-    public void mouseExited(MouseEvent e)
-    {
-        if (this.scene == null)
-        {
-            return;
-        }
-        this.scene.mouseExited(e);
-    }
-    
-    public void mouseDragged(MouseEvent e)
-    {
-        if (this.scene == null)
-        {
-            return;
-        }
-        
-        this.scene.mouseDragged(e);
-    }
-    
-    public void mouseMoved(MouseEvent e)
+    /**
+     * Mouse entered.
+     *
+     * @param event the event
+     */
+    @Override
+	public void mouseEntered(MouseEvent event)
     {
         if (this.scene == null)
         {
             return;
         }
         
-        this.scene.mouseMoved(e);
+        this.scene.mouseEntered(event);
     }
     
-    public void mouseWheelMoved(MouseWheelEvent e)
+    /**
+     * Mouse exited.
+     *
+     * @param event the event
+     */
+    @Override
+	public void mouseExited(MouseEvent event)
+    {
+        if (this.scene == null)
+        {
+            return;
+        }
+        this.scene.mouseExited(event);
+    }
+    
+    /**
+     * Mouse dragged.
+     *
+     * @param event the event
+     */
+    @Override
+	public void mouseDragged(MouseEvent event)
     {
         if (this.scene == null)
         {
             return;
         }
         
-        this.scene.mouseWheelMoved(e);
+        this.scene.mouseDragged(event);
+    }
+    
+    /**
+     * Mouse moved.
+     *
+     * @param event the event
+     */
+    @Override
+	public void mouseMoved(MouseEvent event)
+    {
+        if (this.scene == null)
+        {
+            return;
+        }
+        
+        this.scene.mouseMoved(event);
+    }
+    
+    /**
+     * Mouse wheel moved.
+     *
+     * @param event the event
+     */
+    @Override
+	public void mouseWheelMoved(MouseWheelEvent event)
+    {
+        if (this.scene == null)
+        {
+            return;
+        }
+        
+        this.scene.mouseWheelMoved(event);
     }
 }

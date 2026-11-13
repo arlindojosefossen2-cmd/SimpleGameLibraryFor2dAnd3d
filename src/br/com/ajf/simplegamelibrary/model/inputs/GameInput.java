@@ -1,61 +1,124 @@
 package br.com.ajf.simplegamelibrary.model.inputs;
 
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
+/**
+ * The Interface GameInput. <p>Simple template for inputs.</p>
+ * @author Arlindo Jose Fossem
+ * @version 1.2v
+ * @since 1.5v
+ */
 public interface GameInput
 {
     
-    default void keyTyped(KeyEvent e)
+    /**
+     * Key typed.
+     *
+     * @param event the event
+     */
+    default void keyTyped(KeyEvent event)
     {
     
     }
     
-    default void keyPressed(KeyEvent e)
+    /**
+     * Key pressed.
+     *
+     * @param event the event
+     */
+    default void keyPressed(KeyEvent event)
     {
     
     }
     
-    default void keyReleased(KeyEvent e)
+    /**
+     * Key released.
+     *
+     * @param event the event
+     */
+    default void keyReleased(KeyEvent event)
     {
     
     }
     
-    default void mouseClicked(MouseEvent e)
+    /**
+     * Mouse clicked.
+     *
+     * @param event the event
+     */
+    default void mouseClicked(MouseEvent event)
     {
     
     }
     
-    default void mousePressed(MouseEvent e)
+    /**
+     * Mouse pressed.
+     *
+     * @param event the event
+     */
+    default void mousePressed(MouseEvent event)
     {
     
     }
     
-    default void mouseReleased(MouseEvent e)
+    /**
+     * Mouse released.
+     *
+     * @param event the event
+     */
+    default void mouseReleased(MouseEvent event)
     {
     
     }
     
-    default void mouseEntered(MouseEvent e)
+    /**
+     * Mouse entered.
+     *
+     * @param event the event
+     */
+    default void mouseEntered(MouseEvent event)
     {
     
     }
     
-    default void mouseExited(MouseEvent e)
+    /**
+     * Mouse exited.
+     *
+     * @param event the event
+     */
+    default void mouseExited(MouseEvent event)
     {
     
     }
     
-    default void mouseDragged(MouseEvent e)
+    /**
+     * Mouse dragged.
+     *
+     * @param event the event
+     */
+    default void mouseDragged(MouseEvent event)
     {
     
     }
     
-    default void mouseMoved(MouseEvent e)
+    /**
+     * Mouse moved.
+     *
+     * @param event the event
+     */
+    default void mouseMoved(MouseEvent event)
     {
     
     }
     
-    default void mouseWheelMoved(MouseWheelEvent e)
+    /**
+     * Mouse wheel moved.
+     *
+     * @param event the event
+     */
+    default void mouseWheelMoved(MouseWheelEvent event)
     {
     
     }

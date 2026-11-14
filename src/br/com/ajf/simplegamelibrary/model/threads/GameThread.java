@@ -30,6 +30,10 @@ public final class GameThread implements Runnable
     /** The running. */
     private boolean running;
     
+    
+    /** The delta. */
+    private float delta;
+    
     /**
      * Instantiates a new game thread.
      *
@@ -67,7 +71,7 @@ public final class GameThread implements Runnable
     public void run()
     {
         final double drawInterval = (double) 1_000_000_000 / this.fps;
-        double delta = 0.;
+      
         long lastTime = System.nanoTime();
         long currentTime;
         
@@ -90,8 +94,8 @@ public final class GameThread implements Runnable
      *
      * @return the int
      */
-    public int getFps()
+    public float getFps()
     {
-        return fps;
+        return delta;
     }
 }

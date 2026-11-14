@@ -16,7 +16,7 @@ public abstract class AbstractScene implements Scene
 	protected final IGame game;
 	
 	/** The start. */
-	protected boolean start = true;
+	protected boolean start;
 	
 	/** The stop. */
 	protected boolean stop;

@@ -20,7 +20,7 @@ public final class GameThread implements Runnable
     private static final int ONE_INT = 1;
 
 	/** The fps. */
-    public final int fps;
+    private final int fps;
     
     /** The game. */
     private final IGame game;

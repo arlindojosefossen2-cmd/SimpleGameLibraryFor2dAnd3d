@@ -8,6 +8,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * The Class GameThread.
+ * 
  * @author Arlindo Jose Fossem
  * @version 1.2v
  * @since 1.5v
@@ -29,7 +30,6 @@ public final class GameThread implements Runnable
     
     /** The running. */
     private boolean running;
-    
     
     /** The delta. */
     private float delta;

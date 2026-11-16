@@ -10,7 +10,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.SwingUtilities;
 
@@ -58,11 +60,8 @@ public final class Inputs implements GameInput
 	/** The Constant NUM_MOUSE_CODES. */
 	public static final byte NUM_MOUSE_CODES = 9;
 	
-	/** The Constant NUM_KEYS_CODES. */
-	public static final short NUM_KEYS_CODES = 600;
-	
-	/** The keys actions. */
-	private final GameAction[] keysActions = new GameAction[NUM_KEYS_CODES];
+	/** The key actiuons. */
+	private final Map<Integer,GameAction> keyActiuons = new HashMap<>();
 	
 	/** The mouse actions. */
 	private final GameAction[] mouseActions = new GameAction[NUM_MOUSE_CODES];
@@ -161,13 +160,7 @@ public final class Inputs implements GameInput
 	{
 		final List<String> list = new ArrayList<>();
 		
-		for (int i = 0; i < keysActions.length; i++)
-		{
-			if(keysActions[i] == gameCode)
-			{
-				list.add(getKeyName(i));
-			}
-		}
+		keyActiuons.keySet().stream().filter(id -> gameCode == keyActiuons.get(id)).forEach(id -> list.add(getKeyName(id)));
 		
 		for (int i = 0; i < mouseActions.length; i++)
 		{
@@ -249,13 +242,7 @@ public final class Inputs implements GameInput
 	 */
 	public void resetAllGameActions()
 	{
-		for (GameAction keysAction : keysActions)
-		{
-			if(keysAction != null)
-			{
-				keysAction.reset();
-			}
-		}
+		this.keyActiuons.values().stream().filter(keysAction -> keysAction != null).forEach(GameAction::reset);
 		
 		for (GameAction mouseAction : mouseActions)
 		{
@@ -273,13 +260,7 @@ public final class Inputs implements GameInput
 	 */
 	public void clearMap(GameAction gameAction)
 	{
-		for (int i = 0; i < keysActions.length; i++)
-		{
-			if(keysActions[i] == gameAction)
-			{
-				keysActions[i] = null;
-			}
-		}
+		this.keyActiuons.clear();
 		
 		for (int i = 0; i < mouseActions.length; i++)
 		{
@@ -311,7 +292,7 @@ public final class Inputs implements GameInput
 	 */
 	public void mapToKey(GameAction GameAction,int keyCode)
 	{
-		keysActions[keyCode] = GameAction;
+		this.keyActiuons.put(keyCode, GameAction);
 	}
 	
 	/**
@@ -332,9 +313,7 @@ public final class Inputs implements GameInput
 	 */
 	private GameAction getKeyAction(KeyEvent event)
 	{
-		final int key = event.getKeyCode();
-		
-		return key < keysActions.length ? keysActions[key] : null;
+		return this.keyActiuons.get(event.getKeyCode());
 	}
 	
 	/**

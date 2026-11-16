@@ -245,9 +245,9 @@ public final class Inputs implements GameInput
 	}
 
 	/**
-	 * Sets the all game actions.
+	 * Reset the all game actions.
 	 */
-	public void setAllGameActions()
+	public void resetAllGameActions()
 	{
 		for (GameAction keysAction : keysActions)
 		{

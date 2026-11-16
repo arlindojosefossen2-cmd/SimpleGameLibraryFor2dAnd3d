@@ -1,6 +1,8 @@
 package br.com.ajf.simplegamelibrary.model.scenes;
 
 import br.com.ajf.simplegamelibrary.model.core.IGame;
+import br.com.ajf.simplegamelibrary.model.inputs.GameInput;
+import br.com.ajf.simplegamelibrary.model.inputs.Inputs;
 
 /**
  * The Class AbstractScene.
@@ -27,6 +29,9 @@ public abstract class AbstractScene implements Scene
 	/** The active. */
 	protected boolean active = true;
 	
+	/** The inputs. */
+	protected final GameInput inputs;
+	
 	/**
 	 * Instantiates a new abstract scene.
 	 *
@@ -35,6 +40,7 @@ public abstract class AbstractScene implements Scene
 	public AbstractScene(IGame game)
 	{
 		this.game = game;
+		this.inputs = new Inputs(game.getCanvas());
 	}
 	
 

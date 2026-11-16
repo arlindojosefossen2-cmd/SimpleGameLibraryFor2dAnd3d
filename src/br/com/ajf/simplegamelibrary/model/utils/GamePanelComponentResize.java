@@ -24,6 +24,17 @@ public final class GamePanelComponentResize extends ComponentAdapter
     }
     
     /**
+     * Component hidden.
+     *
+     * @param eventComponent the event component
+     */
+    @Override
+    public void componentHidden(ComponentEvent eventComponent)
+    {
+    	 this.game.resize(eventComponent.getComponent().getX(),eventComponent.getComponent().getY(),eventComponent.getComponent().getWidth(), eventComponent.getComponent().getHeight());
+    }
+    
+    /**
      * Component resized.
      *
      * @param eventComponent the event component
@@ -32,5 +43,16 @@ public final class GamePanelComponentResize extends ComponentAdapter
     public void componentResized(ComponentEvent eventComponent)
     {
         this.game.resize(eventComponent.getComponent().getX(),eventComponent.getComponent().getY(),eventComponent.getComponent().getWidth(), eventComponent.getComponent().getHeight());
+    }
+    
+    /**
+     * Component shown.
+     *
+     * @param eventComponent the event component
+     */
+    @Override
+    public void componentShown(ComponentEvent eventComponent)
+    {
+    	 this.game.resize(eventComponent.getComponent().getX(),eventComponent.getComponent().getY(),eventComponent.getComponent().getWidth(), eventComponent.getComponent().getHeight());
     }
 }

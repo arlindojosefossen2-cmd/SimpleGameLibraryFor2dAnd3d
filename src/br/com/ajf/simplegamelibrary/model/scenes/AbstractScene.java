@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
 import br.com.ajf.simplegamelibrary.model.core.IGame;
-import br.com.ajf.simplegamelibrary.model.inputs.GameInput;
 import br.com.ajf.simplegamelibrary.model.inputs.Inputs;
 
 /**
@@ -34,7 +33,7 @@ public abstract class AbstractScene implements Scene
 	protected boolean active = true;
 	
 	/** The inputs. */
-	protected final GameInput inputs;
+	protected final Inputs inputs;
 	
 	/**
 	 * Instantiates a new abstract scene.

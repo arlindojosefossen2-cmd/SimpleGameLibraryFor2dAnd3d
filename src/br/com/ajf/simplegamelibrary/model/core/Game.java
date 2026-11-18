@@ -21,7 +21,6 @@ import java.awt.event.MouseWheelEvent;
  */
 public final class Game implements IGame
 {
-    
     /** The game window. */
     private final GameWindow gameWindow;
     

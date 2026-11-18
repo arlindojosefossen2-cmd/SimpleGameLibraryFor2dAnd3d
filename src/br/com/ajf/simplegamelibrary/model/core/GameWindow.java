@@ -72,4 +72,12 @@ public final class GameWindow
 		this.window.setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(resourcePath)))
 				.getImage());
 	}
+	
+	/**
+	 * Stop.
+	 */
+	protected void stop()
+	{
+		this.window.dispose();
+	}
 }

@@ -185,7 +185,6 @@ public final class Game implements IGame
         gamePanel.stop();
         gameThread.stop();
         gameWindow.stop();
-        System.exit(0);
     }
     
     /**

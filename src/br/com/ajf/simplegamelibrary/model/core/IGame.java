@@ -5,6 +5,7 @@ import br.com.ajf.simplegamelibrary.model.scenes.Scene;
 
 import javax.swing.JPanel;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 /**
  * The Interface IGame.
@@ -75,6 +76,40 @@ public interface IGame extends GameInput
      * @return the canvas
      */
     JPanel getCanvas();
+    
+    /**
+     * Gets the screen width.
+     *
+     * @return the screen width
+     */
+    int getScreenWidth();
+    
+    /**
+     * Gets the screen hieght.
+     *
+     * @return the screen hieght
+     */
+    int getScreenHieght();
+    
+    /**
+     * Gets the window width.
+     *
+     * @return the window width
+     */
+    int getWindowWidth();
+    
+    /**
+     * Gets the window height.
+     *
+     * @return the window height
+     */
+    int getWindowHeight();
+    /**
+     * Gets the buffer.
+     *
+     * @return the buffer
+     */
+    BufferedImage getBuffer();
     
     /**
      * Start game thread.

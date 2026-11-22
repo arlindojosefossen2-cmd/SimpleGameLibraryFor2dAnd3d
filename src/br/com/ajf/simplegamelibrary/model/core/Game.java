@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.awt.image.BufferedImage;
 
 /**
  * The Class Game.
@@ -409,5 +410,55 @@ public final class Game implements IGame
 	public void setScreenResize(boolean resize)
 	{
 		this.resize = resize;
+	}
+
+	@Override
+	public int getScreenWidth()
+	{
+		return this.gamePanel.getImage().getWidth();
+	}
+
+	/**
+	 * Gets the screen hieght.
+	 *
+	 * @return the screen hieght
+	 */
+	@Override
+	public int getScreenHieght()
+	{
+		return this.gamePanel.getImage().getHeight();
+	}
+
+	/**
+	 * Gets the window width.
+	 *
+	 * @return the window width
+	 */
+	@Override
+	public int getWindowWidth()
+	{
+		return this.gamePanel.get().getWidth();
+	}
+
+	/**
+	 * Gets the window height.
+	 *
+	 * @return the window height
+	 */
+	@Override
+	public int getWindowHeight()
+	{
+		return this.gamePanel.get().getHeight();
+	}
+
+	/**
+	 * Gets the buffer.
+	 *
+	 * @return the buffer
+	 */
+	@Override
+	public BufferedImage getBuffer()
+	{
+		return gamePanel.getImage();
 	}
 }

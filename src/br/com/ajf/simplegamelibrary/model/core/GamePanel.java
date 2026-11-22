@@ -28,6 +28,12 @@ public final class GamePanel
     
     /** The graphics 2 D. */
     private Graphics2D graphics2D;
+
+	/** The offset screen Y. */
+	private int offsetScreenY;
+
+	/** The offset screen X. */
+	private int offsetScreenX;
     
     /**
      * Instantiates a new game panel.
@@ -120,7 +126,7 @@ public final class GamePanel
     private void drawToScreen()
     {
         final Graphics g = this.canvas.getGraphics();
-        g.drawImage(image, 0, 0, null);
+        g.drawImage(image, offsetScreenX-8, offsetScreenY-8, null);
         g.dispose();
     }
     
@@ -141,15 +147,18 @@ public final class GamePanel
      */
     public void resize(int width, int height)
     {
-        if (graphics2D != null)
+    	offsetScreenX = (width - image.getWidth())/2;
+    	offsetScreenY = (height - image.getHeight())/2;
+    	
+        if (graphics2D != null && game.isScreenResize())
         {
             graphics2D.dispose();
+            this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            this.graphics2D = image.createGraphics();
+            this.graphics2D.drawImage(image,offsetScreenX,offsetScreenY, width, height, null);
         }
         
         this.canvas.setSize(new Dimension(width, height));
-        this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        this.graphics2D = image.createGraphics();
-        this.graphics2D.drawImage(image, width, height, null);
     }
     
     /**

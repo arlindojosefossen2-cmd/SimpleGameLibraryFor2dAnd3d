@@ -41,6 +41,9 @@ public final class Game implements IGame
     
     /** The scene. */
     private Scene scene;
+
+	/** The resize. */
+	private boolean resize;
     
     /**
      * Instantiates a new game.
@@ -385,4 +388,26 @@ public final class Game implements IGame
         
         this.scene.mouseWheelMoved(event);
     }
+
+	/**
+	 * Checks if is screen resize.
+	 *
+	 * @return true, if is screen resize
+	 */
+	@Override
+	public boolean isScreenResize()
+	{
+		return this.resize;
+	}
+
+	/**
+	 * Sets the screen resize.
+	 *
+	 * @param resize the new screen resize
+	 */
+	@Override
+	public void setScreenResize(boolean resize)
+	{
+		this.resize = resize;
+	}
 }

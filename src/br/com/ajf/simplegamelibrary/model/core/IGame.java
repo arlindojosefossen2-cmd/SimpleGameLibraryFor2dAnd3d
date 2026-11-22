@@ -80,4 +80,18 @@ public interface IGame extends GameInput
      * Start game thread.
      */
     void startGameThread();
+    
+    /**
+     * Checks if is screen resize.
+     *
+     * @return true, if is screen resize
+     */
+    boolean isScreenResize();
+    
+    /**
+     * Sets the screen resize.
+     *
+     * @param resize the new screen resize
+     */
+    void setScreenResize(boolean resize);
 }

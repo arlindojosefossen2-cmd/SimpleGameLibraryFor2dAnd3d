@@ -1,9 +1,14 @@
 package br.com.ajf.test.main;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
 
 import br.com.ajf.simplegamelibrary.model.core.Game;
 import br.com.ajf.simplegamelibrary.model.core.IGame;
@@ -15,7 +20,7 @@ import br.com.ajf.simplegamelibrary.model.scenes.AbstractScene;
 *@version 1.0v.
 *@since 1.5v.
 **/
-public final class TestScreenResizeTrue extends AbstractScene
+public final class TestScreenResizeTrueImage extends AbstractScene
 {	
 	private final Rectangle rect = new Rectangle(32,32,64,64);
 	
@@ -23,10 +28,12 @@ public final class TestScreenResizeTrue extends AbstractScene
 	private final GameAction left = new GameAction("left");
 	private final GameAction up = new GameAction("up");
 	private final GameAction down = new GameAction("down");
+	
+	private Image testImage;
 
 	private final int speed = 12;
 	
-	public TestScreenResizeTrue(IGame game)
+	public TestScreenResizeTrueImage(IGame game)
 	{
 		super(game);
 	}
@@ -34,7 +41,7 @@ public final class TestScreenResizeTrue extends AbstractScene
 	public static void main(String[] args)
 	{
 		final IGame game = new Game("Test Screen Resize True",720,576,30);
-		game.addScene(new TestScreenResizeTrue(game));
+		game.addScene(new TestScreenResizeTrueImage(game));
 		game.start();
 	}
 
@@ -44,6 +51,11 @@ public final class TestScreenResizeTrue extends AbstractScene
 		g2d.setColor(Color.BLUE);
 		g2d.fillRect(0, 0, game.getScreenWidth(), game.getScreenHieght());
 		
+		if(testImage != null)
+		{
+			g2d.drawImage(testImage, 0, 0, null);
+		}
+		
 		g2d.setColor(Color.RED);
 		g2d.fillRect(rect.x, rect.y,rect.width,rect.height);
 	}
@@ -51,6 +63,8 @@ public final class TestScreenResizeTrue extends AbstractScene
 	@Override
 	public void start()
 	{
+		testImage = new ImageIcon(TestScreenResizeTrueImage.class.getResource("img-test.png")).getImage();
+		
 		game.setScreenResize(true);
 		
 		this.inputs.mapToKey(down, KeyEvent.VK_S);
@@ -90,6 +104,18 @@ public final class TestScreenResizeTrue extends AbstractScene
 	@Override
 	public void resize(int xPos, int yPos, int width, int height)
 	{
-//		pass
+		if (testImage == null)
+		{
+			return;
+		}
+		
+		final Image img = GraphicsEnvironment
+				.getLocalGraphicsEnvironment()
+				.getDefaultScreenDevice().getDefaultConfiguration()
+				.createCompatibleImage(width, height);
+		final Graphics g = img.getGraphics();
+		g.drawImage(testImage, 0, 0, width, height, null);
+		g.dispose();
+		testImage = img;
 	}
 }
